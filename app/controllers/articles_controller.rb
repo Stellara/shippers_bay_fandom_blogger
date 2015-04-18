@@ -1,6 +1,5 @@
 class ArticlesController < ApplicationController
-  #Prefix   verb  URI Pattern          Controller#Action 
-  #articles GET   /articles(.:format)  articles#index
+  include ArticlesHelper
 
   def index 
     @articles = Article.all   
@@ -12,5 +11,10 @@ class ArticlesController < ApplicationController
 
   def new 
     @article = Article.new
+  end 
+
+  def create 
+    @article = Article.create!(article_params)
+    redirect_to article_path(@article)
   end 
 end
