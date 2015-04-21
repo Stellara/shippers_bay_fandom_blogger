@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   end 
 
   def show 
-    get_article
+    retrieve_article
   end 
 
   def new 
@@ -19,11 +19,16 @@ class ArticlesController < ApplicationController
   end 
 
   def destroy 
-    get_article.destroy!
+    retrieve_article.destroy
     redirect_to articles_path
   end 
 
   def edit 
-    get_article
+    retrieve_article
+  end 
+
+  def update 
+    retrieve_article.update(article_params)
+    redirect_to article_path(@article)
   end 
 end
