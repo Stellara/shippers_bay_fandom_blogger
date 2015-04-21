@@ -3,7 +3,7 @@ module ArticlesHelper
     params.require(:article).permit(:title, :body)
   end 
 
-  def get_article 
+  def retrieve_article 
     @article = Article.find(params[:id])
     @article 
   end 
