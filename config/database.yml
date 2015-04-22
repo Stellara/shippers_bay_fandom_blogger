@@ -22,4 +22,9 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  production:
+  adapter: postgresql
+  encoding: utf8
+  database: blogger_production
+  pool: 5
+
