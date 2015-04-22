@@ -13,6 +13,6 @@ class AuthorSessionsController < ApplicationController
 
   def destroy 
     logout 
-    redirect_to(root, notice: "You are now logged in.")
+    redirect_to(root_path, notice: "You are now logged out.")
   end 
 end
