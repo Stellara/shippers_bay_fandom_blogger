@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150422031917) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "articles", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
@@ -28,7 +31,7 @@ ActiveRecord::Schema.define(version: 20150422031917) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "comments", ["article_id"], name: "index_comments_on_article_id"
+  add_index "comments", ["article_id"], name: "index_comments_on_article_id", using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
@@ -37,8 +40,8 @@ ActiveRecord::Schema.define(version: 20150422031917) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "taggings", ["article_id"], name: "index_taggings_on_article_id"
-  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id"
+  add_index "taggings", ["article_id"], name: "index_taggings_on_article_id", using: :btree
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string   "name"
@@ -46,4 +49,7 @@ ActiveRecord::Schema.define(version: 20150422031917) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "comments", "articles"
+  add_foreign_key "taggings", "articles"
+  add_foreign_key "taggings", "tags"
 end
