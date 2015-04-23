@@ -2,29 +2,19 @@ class AuthorsController < ApplicationController
   before_action :set_author, only: [:show, :edit, :update, :destroy]
   before_action :require_login, except: [:new, :create]
 
-  # GET /authors
-  # GET /authors.json
   def index
-    @authors = Author.all
   end
 
-  # GET /authors/1
-  # GET /authors/1.json
   def show
-    redirect_to root_path unless params[:id].to_i == @author.id
   end
 
-  # GET /authors/new
   def new
     @author = Author.new
   end
 
-  # GET /authors/1/edit
   def edit
   end
 
-  # POST /authors
-  # POST /authors.json
   def create
     @author = Author.new(author_params)
 
@@ -38,9 +28,7 @@ class AuthorsController < ApplicationController
       end
     end
   end
-
-  # PATCH/PUT /authors/1
-  # PATCH/PUT /authors/1.json
+  
   def update
     respond_to do |format|
       if @author.update(author_params)
@@ -66,7 +54,7 @@ class AuthorsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_author
-      @author = Author.find(params[:id])
+      @author = current_user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

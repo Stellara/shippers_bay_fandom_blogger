@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :tags
 
-  resources :authors
+  resource :author
 
   resources:author_sessions, only: [:create, :new, :destroy]
   get 'login' => 'author_sessions#new'
