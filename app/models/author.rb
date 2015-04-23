@@ -1,4 +1,6 @@
 class Author < ActiveRecord::Base
+  has_many :articles
+
   authenticates_with_sorcery!
 
   validates_confirmation_of :password, presence: true, message: "Passwords should match", if: :password
