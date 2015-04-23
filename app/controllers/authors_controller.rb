@@ -1,5 +1,6 @@
 class AuthorsController < ApplicationController
   before_action :set_author, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, except: [:new, :create]
 
   # GET /authors
   # GET /authors.json
@@ -10,6 +11,7 @@ class AuthorsController < ApplicationController
   # GET /authors/1
   # GET /authors/1.json
   def show
+    redirect_to root_path unless params[:id].to_i == @author.id
   end
 
   # GET /authors/new
