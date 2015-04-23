@@ -6,6 +6,7 @@ class AuthorsController < ApplicationController
   end
 
   def show
+    @articles = @author.articles
   end
 
   def new
@@ -42,8 +43,6 @@ class AuthorsController < ApplicationController
     end
   end
 
-  # DELETE /authors/1
-  # DELETE /authors/1.json
   def destroy
     @author.destroy
     respond_to do |format|
